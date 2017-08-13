@@ -1,0 +1,202 @@
+new p5();// import random
+// setup how many rows/cols
+var rows = 20;
+var cols = 20;
+// width and height are defined in createCanvas
+// setup the size of the grid
+var w_grid;
+var h_grid;
+// setup the map
+var gamemap;
+// setup start ang goal
+var start;
+var goal;
+// set up the algorithm
+var pathAlg;
+// setup the canvas
+var canvas;
+// setup the icon
+var ib1,ib2,ib3,ib4;
+// setup the count for coordinate
+var count = 0;
+//  res == 1 if solution exist
+var res;
+// pause the drawing
+var pause = false;
+var resetButton;
+function reset(){
+    background(255);
+    go = false;
+    pause = false;
+    count = 0;
+    for (var j = 0; j < coord.length;j++){
+        coord[j] = undefined;
+    }
+    for (var i = 0 ; i < rows; i++){
+        for (var j = 0; j < cols; j++){
+            if ((gamemap.grid[i][j] === start)||(gamemap.grid[i][j]===goal)){
+                continue;
+            }
+            gamemap.grid[i][j].isObs(false);
+        }
+    }
+  console.log("clear");
+}
+
+var setSGButton;
+function setSG(){
+    noStroke();
+    gamemap = new Map(cols,rows,w_grid,h_grid);
+    var s_x = coord[0];
+    var s_y = coord[1];
+    var g_x = coord[2];
+    var g_y = coord[3];
+    if (s_x!= undefined && s_y!=undefined){
+        start = gamemap.grid[s_x][s_y];
+    }
+    else
+        start = gamemap.grid[0][0];
+    
+    if (g_x!= undefined && g_y!=undefined){
+        goal = gamemap.grid[g_x][g_y];
+    }
+    else
+        goal = gamemap.grid[cols-1][rows-1];
+    
+    start.obstacle = false;
+    goal.obstacle = false;
+    start.color = color(255,51,0);
+    goal.color = color(255,51,0);
+    pathAlg = new Astar(map,start,goal);
+}
+var setMapButton;
+//function drawObs(){
+//    for (var i = 0 ; i < cols; i++){
+//        for (var j = 0; j < rows; j++){
+//            if ((gamemap.grid[i][j] === start)||(gamemap.grid[i][j]===goal)){
+//                continue;
+//            }
+//            gamemap.grid[i][j].generateObs();
+//        }
+//    }
+//}
+
+//store the start and goal coordinte
+var coord = new Array(4);
+//store the icon
+var icon = new Array(4);
+var I;
+var P;
+var index;
+function InputAndButton(x,y,name,index){
+    this.I = createInput("0");
+    this.I.position(x,y);
+    this.P = createP(name);
+    this.P.position(this.I.x+this.I.width,y-19)//I don't know why their standard are different
+    icon[index] = this.I;
+    this.I.changed(updateCoord);
+}
+function updateCoord(){
+    coord[count] = icon[count].value();
+    count++;
+}
+function evalPath(node){
+    var subpath= [];
+    subpath.push(node);
+    while(node.parent){
+        subpath.push(node.parent);
+        node = node.parent;
+    }
+    console.log(subpath.length);
+    return subpath;
+}
+function drawPath(path){
+    noFill();
+    stroke(255,0,255);
+    strokeWeight(w_grid/2);
+    beginShape();
+    for (var i = 0; i < path.length; i++){
+        vertex(path[i].i*w_grid + w_grid/2, path[i].j*h_grid+h_grid/2);
+        console.log("drawing..");
+    }
+    endShape();
+    noStroke();
+}
+//function drawGrid(){
+//    noFill();
+//    stroke(color(0));
+//    for (var i = 0; i < width; i+=w_grid){
+//        for (var j = 0; j < height; j+=h_grid){
+//            rect(i,j,w_grid,h_grid);
+//        }
+//    }
+//    noStroke();
+//}
+
+
+var findRouteButton;
+var go = false;
+function findRoute(){
+    go = true;
+}
+var value =0;
+function mouseDragged(){
+    var i = floor(mouseX/(width/cols));
+    var j = floor(mouseY/(width/rows));
+    gamemap.grid[i][j].isObs(true);    
+}
+
+function drawMap() {
+    for (var i = 0; i < gamemap.cols; i++) {
+        for (var j = 0; j < gamemap.rows; j++) {
+            if ((gamemap.grid[i][j] === start)||(gamemap.grid[i][j]===goal)){
+                continue;
+            }
+            gamemap.grid[i][j].show(false);
+        }
+    }
+}
+
+var p;
+function setup() {
+    ib = new InputAndButton(420,350,"start_x",0);
+    ib2 = new InputAndButton(420,ib.I.y+ib.I.height,"start_y",1);
+    ib3 = new InputAndButton(420,ib2.I.y+ib2.I.height,"goal_x",2);
+    ib4 = new InputAndButton(420,ib3.I.y+ib3.I.height,"goal_y",3);
+//    p = createP("the number of rows and cols are set up to : " +rows +" , " +cols);
+//    p1 = createElement("h3","steps : ");
+//    p2 = createElement("p","1.enter the coordinate of start and goal(default value of x:(0,0),y = (cols-1,rows-1)");
+//    p3 = createElement("p","2. press the set Start/Goal button");
+//    p4 = createElement("p","3. draw obstacles by dragging the mouse");
+//    p5= createElement("p", "4. press find route to get the path");
+    canvas = createCanvas(400,400);
+    noStroke();
+    w_grid = width/cols;
+    h_grid = height/rows;
+    resetButton = createButton("reset");
+    resetButton.mousePressed(reset);
+    setSG();
+    setMapButton = createButton("set Start/Goal");
+    setMapButton.mousePressed(setSG);
+    //setMapButton = createButton("generate map");
+    //setMapButton.mousePressed(drawObs);
+    findRouteButton = createButton("find route");
+    findRouteButton.mousePressed(findRoute);
+}
+ function draw() {
+     if (!pause){
+     background(255);
+     start.show();
+     goal.show();
+     drawMap();
+         if(go){
+            res = pathAlg.step();
+            var path = evalPath(pathAlg.lastCheckedNode);
+            console.log("hi");
+            drawPath(path);
+            if (res === 1){
+                pause = true;
+            }
+         }
+     }
+}

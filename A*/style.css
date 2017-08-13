@@ -1,0 +1,96 @@
+/*
+h1{ color : rgba(73,21,17,0.76);
+    background-color: aqua;
+    width: 400px;
+    font-size: 5.0em;
+    padding: 20px 10px
+}
+h2{
+    font-size: 4.0em;
+    font-family: Ruda;
+    margin-top : 0px;
+    margin-bottom : 5px;
+}
+*/
+/*padding : (top bottom)(left right)*/
+/*
+body {
+    width: 80%;
+    padding: 20px 10px; margin: 20px;
+    font-size: 10px;
+    font-family: Raleway;
+    max-width: 700px;
+    background: url(https://www.sciencenewsforstudents.org/sites/default/files/2017/04/main/articles/860_main_robot_ethics.png);
+    background-repeat: no-repeat;
+    background-size:cover;
+      
+}
+*/
+
+/*
+p{
+    font-size: 2.0em;
+    padding: 10px 5px;
+    margin : 0
+}
+*/
+/*border is consist of width,style,and color */
+canvas { border: 5px rgba(0,0,0,0.3) solid;
+}
+/*
+ol{
+    font-size: 2.0em;
+}
+
+.colored{
+    color: blue;
+    text-decoration: line-through;
+}
+a{
+    font-size: 1.0em
+}
+*/
+
+/*
+.intro{
+    padding-left: 5px;
+    padding-bottom: 10px;
+    border-left: 5px solid grey;
+    border-bottom: 5px solid grey;
+    background: gold;
+}
+*/
+/*
+.date{
+    font-size : 2.0em;
+}
+.input{
+    margin : 0;
+    padding : 0;
+}
+.algorithm{
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+*/
+/*
+.check{
+    float: left;
+    color: aquamarine;
+}
+div{
+    clear: left;
+}
+*/
+/*text-decoration*/
+/*font-weight*/
+/*line-height*/
+/*text-align*/
+/*content*/
+/*border*/
+/*padding*/
+/*margin*/
+
+.exceed{
+    color:red
+}

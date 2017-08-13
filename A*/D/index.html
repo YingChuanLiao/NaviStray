@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.11/p5.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.11/addons/p5.dom.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.11/addons/p5.sound.min.js"></script>
+        <script src="sketch.js"></script>
+        <script src="Map.js"></script>
+        <script src="Spot.js"></script>
+        <script src="Dstarlite.js"></script>
+        <script src="../Astar.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link rel="stylesheet" href="../font-awesome-4.7.0/css/font-awesome.min.css">
+        <style>
+            body{
+                padding-top: 70px;
+                padding-left: 100px;
+                font-size: 2.0em;
+            }
+            input{
+                width: 15%;
+            }
+            .display{
+                color: red;
+            }
+            ul{
+                font-size: 0.5em;
+                list-style: none;
+            }
+            .goals{
+                width:10%;
+            }
+
+        </style>
+<!--        <link href="https://fonts.googleapis.com/css?family=Raleway:400,700|Ruda" rel="stylesheet">-->
+        <link rel="stylesheet" type="text/css" href="style.css">
+    </head>
+    <body>       
+        <h1> this website shows how D*lite works given the start, goal and the obstacle</h1>
+        <form action = "#" id = "size">
+            <label for = "mapsize">Size of map</label>
+            <input id = "mapsize" type ="number" min = "1" max = "10" required placeholder = "do not exceed 10">
+            <p class = "display"></p>
+        </form>
+        <form action = "" id = "number">
+            <label for = "numofgoals">Number of goals</label>
+            <input id = "numofgoals" min = "1" max = "5" type ="number" required placeholder = "do not exceed 5">
+            <p class = "display"></p>
+        </form>
+        <div id = "info">
+            <ul>
+                <li>
+                    <p>select Start's X position
+                        <select class = "initiateSpot">
+                            <option select= "selected"></option>
+                        </select>
+                    </p>
+                </li>
+                <li>
+                    <p>select Start's Y position
+                        <select class = "initiateSpot">
+                            <option select= "selected"></option>
+                        </select>
+                    </p>
+                </li>
+                <li>
+                    <p>select goals
+                        <select class = "goals" multiple>
+                        </select>
+                    </p>
+
+                </li>
+                <li>
+                    <p>select Goal's X position
+                        <select class = "initiateSpot goal">
+                            <option select= "selected"></option>
+                        </select>
+                    </p>
+                </li>
+                <li>
+                    <p>select Goal's Y position
+                        <select class = "initiateSpot goal">
+                            <option select= "selected"></option>
+                        </select>
+                    </p>
+                </li>            
+            </ul>
+            <button>all set!</button>
+        </div>
+       
+        
+        <div class = "blist">
+            <button id = "1">reset</button>
+<!--            <button id = "2">set Start/Goal</button>-->
+<!--            <button id = "3">generate map</button>-->
+            <button id = "4">find route</button>    
+        </div>
+        
+        
+        
+        <script src="http://code.jquery.com/jquery-3.2.1.js"
+        integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+        crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src = "manipulate.js"></script>  
+    </body>
+</html>

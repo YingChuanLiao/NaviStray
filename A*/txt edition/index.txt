@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--This is a comment. Comments are not displayed in the browser-->
+        <!-- title: show the name of the website-->
+        <title> motion planing using different algorithms</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.11/p5.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.11/addons/p5.dom.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.11/addons/p5.sound.min.js"></script>
+        <script src = "sketch.js"></script>
+        <script src = "Astar.js"></script>
+        <script src = "Map.js"></script>
+        <script src = "Spot.js"></script>
+        <link rel="stylesheet" type="text/css" href="style.css">
+            <!--padding : (top bottom)(left right)-->
+        <style> 
+            body {padding: 20px 10px; margin: 0;} 
+            canvas { border: 1px solid blue; }
+        </style>
+    </head>  
+    <body>
+        <h1>motion planning</h1>
+        <!-- just for fun -->
+        <form action = "test.html">
+            <p>choose the way to put obstacles into a map</p>
+            <label for = "drag"> click:</label>
+            <input name= "obstacle" id = "drag" type = "radio" value = "DRAG">
+            <label for = "click"> drag:</label>
+            <input name= "obstacle" id = "click" type = "radio" value = "CLICK">
+            <label for = "pickedbycomputer">picked by computer:</label>
+            <input name= "obstacle" id = "pickedbycomputer" type = "radio" value = "PICKEDBYCOMPUTER">
+            <p>choose the location where you would like to put the obstacle:</p>
+            <label for = "x">x</label>
+            <select name = "x" id = "x">
+                <option value = "1">1</option>
+                <option value = "2">2</option>
+                <option value = "3">3</option>
+            </select>
+            <label for = "y">y</label>
+            <select name = "y" id = "y">
+                <option value = "1">1</option>
+                <option value = "2">2</option>
+                <option value = "3">3</option>
+            </select>
+            <p>or</p>
+            <label for = "x">x</label>
+            <input id = "x" type = "text" placeholder= "x" required>
+            <label for = "y"> y</label>
+            <input id = "y" type = "text" placeholder= "y" required>
+            <input type = "submit">
+        </form>
+        
+        <p> This website shows optimal path by using <strong>A*, D*, Rapid-Exploring Random Tree(RRT) and Probalistic RoadMap(PRM)</strong> </p>
+        <table>
+            <thead>
+                <tr>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><a href = https://en.wikipedia.org/wiki/A*_search_algorithm>A* algorithm     </a>
+                    </td>
+                    <td><a href = https://en.wikipedia.org/wiki/D*>D* algorithm
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <p> the number of rows and cols are set to: </p>
+        <p><em>steps to find the path:</em><p>
+        <ol>
+            <li>enter the coordinate of start and goal
+                <ul>
+                    <li>default value of x:(0,0),y = (cols-1,rows-1)</li>
+                    <li>please hit the <strong>enter</strong> or <strong>tab</strong> button in order to make input valid</li>
+                </ul>
+                
+            </li>
+            <li>press the set Start/Goal button</li>
+            <li>draw obstacles by dragging the mouse</li>
+            <li>press find route button to get the path</li>
+            
+        </ol>
+        
+    </body>
+</html>

@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--This is a comment. Comments are not displayed in the browser-->
+        <!-- title: show the name of the website-->
+        <title> motion planing using different algorithms</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.11/p5.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.11/addons/p5.dom.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.11/addons/p5.sound.min.js"></script>
+        <script src = "sketch.js"></script>
+        <script src = "Astar.js"></script>
+        <script src = "Map.js"></script>
+        <script src = "Spot.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
+        <style>
+            .btn-danger{
+                color : gold;
+            }
+            .blue{
+                background : aqua;
+                border : 1px solid blue;
+            }
+            body{
+                padding-top: 70px;
+                padding-left: 100px;
+                font-size: 2.0em;
+            }
+            .silver{
+                color : silver;
+            }
+            .manipulate{
+                float:left;
+            }
+/*
+            .blist{
+            }
+*/
+            
+        </style>
+
+<!--        <link href="https://fonts.googleapis.com/css?family=Raleway:400,700|Ruda" rel="stylesheet">-->
+        <link rel="stylesheet" type="text/css" href="style.css">
+    </head>  
+    <body>
+<!--
+        form.group
+        form.control
+--> 
+
+        
+        
+        
+        
+<!--    self-made navbar    -->
+        <nav class = "navbar navbar-inverse navbar-fixed-top">
+            <div class = "container">
+                <div class = "navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#alg" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    </button>
+                    <a href = "#" class = "navbar-brand">motion planning</a>
+                </div>
+                <div class="collapse navbar-collapse" id="alg">
+                    <ul class = "nav navbar-nav">
+                        <li><a href = "#"> A*</a></li>
+                        <li><a href = "#"> D*lite</a></li>
+                        <li><a href = "#"> RRT</a></li>
+                        <li><a href = "#"> PRM</a></li>
+                    </ul>
+                    <ul class = "nav navbar-nav navbar-right">
+                        <li><a href = "#"> Github</a>
+                    </ul>
+                </div>
+            </div>
+            
+        </nav>
+        <div class = "container">
+            <div class = "row">
+                <div class = "col-md-3 col-sm-6 blue">
+                    <div class = "row">
+                        <div class = "col-lg-6 col-sm-6 blue">subimage</div>
+                        <div class = "col-lg-6 col-sm-6 blue">subimage</div>
+                    </div>
+                </div>   
+                <div class = "col-md-3 col-sm-6 blue">image</div>
+                <div class = "col-md-3 col-sm-6 blue">image</div>
+                <div class = "col-md-3 col-sm-6 blue">image</div>
+            </div>     
+        </div>
+
+        
+      
+        <div class = "container">
+        <div class = "jumbotron">
+            <h1><i class="fa fa-android" aria-hidden="true"></i> Motion Planning</h1>
+            <p> This website shows optimal path by using <strong>A*, D*, Rapid-Exploring Random Tree(RRT) and Probalistic RoadMap(PRM)</strong> </p>
+            <div class = "algorithm">
+                <div class = "date">achieved in week 3</div>
+                <h2>description of A*</h2>
+                <div class = "intro">
+                    <p>A* is an informed search algorithm, or a best-first search, meaning that it solves problems by searching among all possible paths to the solution (goal) for the one that incurs the smallest cost (least distance travelled, shortest time, etc.), and among these paths it first considers the ones that appear to lead most quickly to the solution. It is formulated in terms of weighted graphs: starting from a specific node of a graph, it constructs a tree of paths starting from that node, expanding paths one step at a time, until one of its paths ends at the predetermined goal node.</p>
+                    <p>more details : 
+                        <a class = "btn btn-link" target = "_blank" href = https://en.wikipedia.org/wiki/A*_search_algorithm role = "button">A* algorithm</a>
+                    </p>
+                    <p>pathfinding(in progress) : <a class = "btn btn-danger btn-sm" href = "#attr-href">A* demo</a></p>
+                </div>
+
+            </div>
+            <div class = "algorithm">
+                <div class = "date">achieved in week 4</div>
+                <h2>description of D* lite</h2>
+                <div class = "intro">
+                    <p>This search algorithm solve the same assumption-based path planning problems, including planning with the freespace assumption, where a robot has to navigate to given goal coordinates in unknown terrain. It makes assumptions about the unknown part of the terrain (for example: that it contains no obstacles) and finds a shortest path from its current coordinates to the goal coordinates under these assumptions.</p>
+                    <p>more details : <a class = "btn btn-link" target = "_blank" href = https://en.wikipedia.org/wiki/D*>D* algorithm</a></p>
+                    <p>pathfinding(in progress) : <a class = "btn btn-danger btn-sm" target = "_blank" href = D/index.html>D*lite demo</a></p>
+                </div>
+
+            </div>
+            <!-- just for fun -->
+            <!--form action = "D/index.html">
+                <input name should be the same to avoid multiple options
+                <p>choose the way to put obstacles into a map</p>
+                <label for = "drag" class = "colored"> drag:</label>
+                <input name= "obstacle" id = "drag" type = "radio" value = "DRAG">
+                <label for = "click" class = "colored"> click:</label>
+                <input name= "obstacle" id = "click" type = "radio" value = "CLICK">
+                <label for = "pickedbycomputer">picked by computer:</label>
+                <input name= "obstacle" id = "pickedbycomputer" type = "radio" value = "PICKEDBYCOMPUTER">
+                <p>choose the location where you would like to put the obstacle:</p>
+                <label for = "x">x</label>
+                <select name = "x" id = "x">
+                    <option value = "1">1</option>
+                    <option value = "2">2</option>
+                    <option value = "3">3</option>
+                </select>
+                <label for = "y">y</label>
+                <select name = "y" id = "y">
+                    <option value = "1">1</option>
+                    <option value = "2">2</option>
+                    <option value = "3">3</option>
+                </select>
+                <p>or</p>
+                <label for = "x">x</label>
+                <input id = "x" type = "text" placeholder= "x" required>
+                <label for = "y"> y</label>
+                <input id = "y" type = "text" placeholder= "y" required>
+                <input type = "submit">
+            </form>
+    -->
+
+            <p> the number of rows and cols are set to: </p>
+            <p><em>steps to find the path:</em><p>
+            <ol>
+                <li>enter the coordinate of start and goal
+                    <ul>
+                        <li>default value of x:(0,0),y = (cols-1,rows-1)</li>
+                        <li>please hit the <strong>enter</strong> or <strong>tab</strong> button in order to make input valid</li>
+                    </ul>
+
+                </li>
+                <li id = "set">press the set Start/Goal button</li>
+                <li id = "obs">draw obstacles by dragging the mouse</li>
+                <li id = "path">press find route button to get the path</li>
+
+            </ol>
+            <p id="attr-href"></p>
+        </div>
+        </div>
+
+<!--        <div id = "container"></div>-->
+        
+        <div>
+            <p class = "display">choose the size of the map</p>
+            <input type = "number">
+            <p class= "check">(the size should not exceed 10)</p>
+        </div>
+        <ul>
+            <li>
+                <p>select Start's X position
+                    <select>
+                        <option>0</option><option>1</option><option>2</option><option>3</option>
+                        <option>4</option><option>5</option><option>6</option><option>7</option>
+                        <option>8</option><option>9</option>
+                    </select>
+                </p>
+            </li>
+            <li>
+                <p>select Start's Y position
+                    <select>
+                        <option>0</option><option>1</option><option>2</option><option>3</option>
+                        <option>4</option><option>5</option><option>6</option><option>7</option>
+                        <option>8</option><option>9</option>
+                    </select>
+                </p>
+            </li>
+            <li>
+                <p>select Goal's X position
+                    <select>
+                        <option>0</option><option>1</option><option>2</option><option>3</option>
+                        <option>4</option><option>5</option><option>6</option><option>7</option>
+                        <option>8</option><option>9</option>
+                    </select>
+                </p>
+            </li>
+            <li>
+                <p>select Goal's Y position
+                    <select>
+                        <option>0</option><option>1</option><option>2</option><option>3</option>
+                        <option>4</option><option>5</option><option>6</option><option>7</option>
+                        <option>8</option><option>9</option>
+                    </select>
+                </p>
+            </li>
+            
+        </ul>
+        
+        
+        <div class = "blist">
+            <button id = "1">reset</button>
+            <button id = "2">set Start/Goal</button>
+            <button id = "3">generate map</button>
+            <button id = "4">find route</button>    
+        </div>
+        
+        
+        
+        <script src="http://code.jquery.com/jquery-3.2.1.js"
+        integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+        crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src = "manipulate.js"></script>  
+    </body>
+</html>
